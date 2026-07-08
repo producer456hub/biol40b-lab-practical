@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIOL 40B — Lab Practical 1 Trainer</title>
+<meta name="description" content="Practice lab practical for BIOL 40B, Labs 1–4: identify histology slides and indicated structures by typing the answer.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="kicker">BIOL 40B · Labs 1–4</span>
+      <h1>Lab Practical 1 — Trainer</h1>
+    </div>
+    <button class="iconbtn" id="theme" title="Toggle light / dark" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <!-- START -->
+  <section id="start" class="card pad">
+    <p class="hero-note">A practice practical in the real exam format: you're shown a specimen as if under the
+      microscope, and you <b>type</b> what's indicated by the target — or name the slide itself. Spelling counts.
+      Missed items keep coming back until you've cleared every one.</p>
+
+    <div class="speclist">
+      <div class="spec"><span class="n">1</span><span><b>Nervous tissue &amp; synapse</b><br>neuron, neuromuscular junction</span></div>
+      <div class="spec"><span class="n">3</span><span><b>Spinal cord &amp; nerve</b><br>slides #27, #28, osmium nerve</span></div>
+      <div class="spec"><span class="n">2·3</span><span><b>Brain histology</b><br>cerebellum #30, cerebrum #31</span></div>
+      <div class="spec"><span class="n">4</span><span><b>Special senses</b><br>eye #36, plus muscle &amp; skin</span></div>
+    </div>
+
+    <hr class="rule">
+    <div class="opts" id="opts">
+      <label class="opt"><input type="checkbox" id="opt-pin" checked>
+        <span class="txt"><span class="lab">Identify the indicated structure</span>
+          <span class="sub">A target marks a structure — name it (56 items)</span></span></label>
+      <label class="opt"><input type="checkbox" id="opt-whole" checked>
+        <span class="txt"><span class="lab">Name the slide</span>
+          <span class="sub">Identify the whole specimen / tissue (14 items)</span></span></label>
+      <label class="opt"><input type="checkbox" id="opt-cn" checked>
+        <span class="txt"><span class="lab">Cranial nerves</span>
+          <span class="sub">Numbers, names &amp; function — I–XII (recall)</span></span></label>
+    </div>
+
+    <div class="spellnote"><b>Spelling counts.</b>&nbsp;Type the full name and spell it correctly — a near-miss gets one nudge, then it's marked wrong.</div>
+
+    <button class="btn btn-primary btn-block" id="startBtn" style="margin-top:20px">Start practical</button>
+  </section>
+
+  <!-- EXAM -->
+  <section id="exam" class="hidden">
+    <div class="status">
+      <div class="stat"><span class="k">Round</span><span class="v" id="s-round">1</span></div>
+      <div class="stat"><span class="k">Remaining</span><span class="v" id="s-left">0</span></div>
+      <div class="stat"><span class="k">To review</span><span class="v" id="s-retry">0</span></div>
+      <div class="stat"><span class="k">Accuracy</span><span class="v acc" id="s-acc">—</span></div>
+    </div>
+    <div class="progress"><i id="bar" style="width:0%"></i></div>
+
+    <div id="banner"></div>
+
+    <div class="card pad">
+      <div class="qtag"><span class="dot"></span><span id="q-kind">Identify</span></div>
+      <h2 class="qprompt" id="q-prompt">—</h2>
+
+      <div class="field hidden" id="field">
+        <img id="q-img" alt="microscope specimen">
+        <div class="reticle hidden" id="reticle"><span class="ring pulse"></span>
+          <span class="cx"></span><span class="cx b"></span><span class="cy"></span><span class="cy b"></span></div>
+        <div id="chip"></div>
+        <span class="zoomhint">tap to zoom</span>
+      </div>
+
+      <form class="answer" id="answer" autocomplete="off">
+        <div class="inrow">
+          <input type="text" id="input" placeholder="Type your answer…" autocomplete="off"
+                 autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+          <button class="btn btn-primary" id="submit" type="submit">Check</button>
+        </div>
+        <div class="feedback" id="feedback"></div>
+      </form>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn btn-ghost" id="quit">End &amp; restart</button>
+      <button class="btn btn-primary hidden" id="next" style="margin-left:auto">Next →</button>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section id="done" class="hidden">
+    <div class="card done">
+      <div class="big" id="done-ico">✓</div>
+      <h2 id="done-h">Mastered</h2>
+      <p id="done-p">You identified every structure correctly.</p>
+      <div class="scoreline">
+        <div class="s"><span class="k">Items</span><span class="v" id="d-items">0</span></div>
+        <div class="s"><span class="k">First-try</span><span class="v" id="d-first">0</span></div>
+        <div class="s"><span class="k">Rounds</span><span class="v" id="d-rounds">0</span></div>
+      </div>
+      <div class="btnrow" style="justify-content:center">
+        <button class="btn btn-primary" id="again">Take it again</button>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Study aid · not for distribution · images from course histology decks</p>
+</div>
+
+<div class="lightbox" id="lightbox"><img id="lb-img" alt="specimen enlarged"></div>
+
+<script src="questions.js"></script>
+<script src="facts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
