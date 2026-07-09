@@ -410,7 +410,6 @@ const SLIDES = [
   "image": "nmj.png",
   "whole": [
    "neuromuscular junction",
-   "motor end plate",
    "nmj"
   ],
   "pins": [

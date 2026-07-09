@@ -56,7 +56,7 @@ TITLE = {"nerve_v1":"Peripheral Nerve, osmium stain (low power)","nerve_v2":"Per
 WHOLE = {"nerve_v1":["nerve","peripheral nerve"],"nerve_v2":["nerve","peripheral nerve"],"nerve_v3":["nerve","peripheral nerve"],
  "sc27_over":["spinal cord","spinal cord ganglion"],"sc27_cc":["spinal cord"],"sc28_over":["spinal cord"],"sc28_cc":["spinal cord"],
  "cbl_over":["cerebellum"],"cbl_r2":["cerebellum"],"cerebrum":["cerebrum"],
- "nmj":["neuromuscular junction","motor end plate","nmj"],"lip":["lip"],"eye":["eye","eyeball"],"motorneuron":["motor neuron","neuron"]}
+ "nmj":["neuromuscular junction","nmj"],"lip":["lip"],"eye":["eye","eyeball"],"motorneuron":["motor neuron","neuron"]}
 
 # verified tip#->label maps; ("m",fx,fy) = manual pin
 MAP = {

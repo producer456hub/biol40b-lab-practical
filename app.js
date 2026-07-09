@@ -37,13 +37,16 @@
   function judge(input, accepted) {
     const q = norm(input);
     if (!q) return "wrong";
-    let best = 99;
+    let best = 99, bestLen = 0;
     for (const a of accepted) {
       const t = norm(a);
       if (q === t) return "correct";
-      best = Math.min(best, lev(q, t));
+      const d = lev(q, t);
+      if (d < best) { best = d; bestLen = t.length; }
     }
-    const tol = 2;                 // allow up to 2 typos as a "close" nudge
+    // scale the spelling-nudge tolerance to answer length so short words
+    // don't get a "so close" hint when a genuinely different word is typed
+    const tol = bestLen <= 5 ? 1 : 2;
     return best <= tol ? "close" : "wrong";
   }
 
@@ -64,6 +67,7 @@
         accepted: p.accepted, answer: p.label, title: s.title
       });
     }
+    const ARABIC = {I:"1",II:"2",III:"3",IV:"4",V:"5",VI:"6",VII:"7",VIII:"8",IX:"9",X:"10",XI:"11",XII:"12"};
     if (opts.cn) for (const c of CRANIAL) {
       // rotate through several strict-typeable question forms
       qs.push({kind:"fact", label:"Cranial nerve",
@@ -71,7 +75,7 @@
         accepted:[c.name, c.name+" nerve"], answer:c.name});
       qs.push({kind:"fact", label:"Cranial nerve",
         prompt:`The ${c.name} nerve is cranial nerve number ______ (Roman numeral).`,
-        accepted:[c.n], answer:c.n});
+        accepted:[c.n, ARABIC[c.n]], answer:c.n});
       qs.push({kind:"fact", label:"Cranial nerve",
         prompt:`Is the ${c.name} nerve (CN ${c.n}) sensory, motor, or both?`,
         accepted: c.type==="both" ? ["both","mixed"] : [c.type], answer:c.type});
@@ -245,6 +249,12 @@
   $("field").onclick = (e) => {
     const q = pool[idx]; if (!q || !q.image) return;
     $("lb-img").src = q.image;
+    const lr = $("lb-reticle");
+    if (q.kind === "pin") {
+      lr.classList.remove("hidden");
+      lr.style.left = (q.x * 100) + "%";
+      lr.style.top  = (q.y * 100) + "%";
+    } else lr.classList.add("hidden");
     $("lightbox").classList.add("on");
   };
   $("lightbox").onclick = () => $("lightbox").classList.remove("on");
