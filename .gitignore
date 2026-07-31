@@ -1,7 +1,0 @@
-# build intermediates (dev-only, large image dumps)
-build/pages/
-build/clean/
-build/qa/
-build/finalqa/
-build/tips/
-build/*.json
